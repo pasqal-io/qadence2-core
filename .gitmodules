@@ -1,0 +1,3 @@
+[submodule "qadence2-expressions"]
+	path = qadence2-expressions
+	url = https://github.com/pasqal-io/wip-qadence2-expressions.git
