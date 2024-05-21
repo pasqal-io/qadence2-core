@@ -1,0 +1,8 @@
+[submodule "qadence-expressions"]
+	path = qadence-expressions
+	url = https://github.com/pasqal-io/wip-qadence2-expressions
+	branch = em/project_template
+[submodule "qadence-platforms"]
+	path = qadence-platforms
+	url = https://github.com/pasqal-io/wip-qadence2-platforms
+	branch = km/new-model

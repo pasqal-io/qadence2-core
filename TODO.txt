@@ -1,0 +1,3 @@
+[ ] remove branch option on .gitmodules file once the respective branches are merged to main
+[ ] add content to README
+[ ] decide to move compiler as a submodule repository or not
