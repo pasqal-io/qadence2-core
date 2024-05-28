@@ -1,3 +1,5 @@
 [ ] remove branch option on .gitmodules file once the respective branches are merged to main
 [ ] add content to README
 [ ] decide to move compiler as a submodule repository or not
+[ ] make data conversion separated submodules to avoid installation of unused packages, e.g. if the user uses torch tensor, no need for having numpy, networkx, jax, etc. also loaded
+[ ] make std.embeddings a separated module/repo
