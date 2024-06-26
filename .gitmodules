@@ -1,7 +1,7 @@
-[submodule "qadence2-expressions"]
-	path = qadence2-expressions
+[submodule "qadence-expressions"]
+	path = qadence-expressions
 	url = https://github.com/pasqal-io/wip-qadence2-expressions.git
 
-[submodule "qadence2-platforms"]
-	path = qadence2-platforms
+[submodule "qadence-platforms"]
+	path = qadence-platforms
 	url = https://github.com/pasqal-io/wip-qadence2-platforms.git
