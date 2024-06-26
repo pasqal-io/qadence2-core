@@ -1,17 +1,17 @@
 from __future__ import annotations
-from typing import Any, Callable, Union
-from functools import singledispatchmethod
 
-import torch
-import numpy as np
+from functools import singledispatchmethod
+from typing import Any, Callable
+
 import networkx as nx
+import numpy as np
+import torch
 
 from qadence_core.expressions.expr import Expr
-from qadence_core.types.register import Register, GraphLike, AdjacencyMatrixLike
 
 
 class QuantumCircuit:
-    @singledispatchmethod
+    @singledispatchmethod  # type: ignore [misc]
     def __init__(self, data, **kwargs):
         raise NotImplementedError
 

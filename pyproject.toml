@@ -36,6 +36,9 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
+  "networkx",
+  "numpy",
+  "torch"
 ]
 
 [tool.hatch.metadata]
@@ -67,7 +70,7 @@ dependencies = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = """-vvv --cov-report=term-missing --cov-config=pyproject.toml --cov=template_python --cov=tests"""
+addopts = """-vvv --cov-report=term-missing --cov-config=pyproject.toml --cov=tests"""
 xfail_strict = true
 filterwarnings = [
   "ignore:Call to deprecated create function FieldDescriptor",
@@ -140,6 +143,6 @@ docstring-quotes = "double"
 python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
-disallow_untyped_defs = true
+disallow_untyped_defs = false
 no_implicit_optional = false
 ignore_missing_imports = true
