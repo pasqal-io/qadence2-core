@@ -4,4 +4,4 @@
 [submodule "qadence-platforms"]
 	path = qadence-platforms
 	url = https://github.com/pasqal-io/wip-qadence2-platforms
-	branch = km/new-model
+	branch = em/add_pql_logic
