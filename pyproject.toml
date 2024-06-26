@@ -56,7 +56,7 @@ dependencies = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = """-vvv --cov-report=term-missing --cov-config=pyproject.toml --cov=template_python --cov=tests"""
+addopts = """-vvv --cov-report=term-missing --cov-config=pyproject.toml --cov=tests"""
 xfail_strict = true
 filterwarnings = [
   "ignore:Call to deprecated create function FieldDescriptor",
