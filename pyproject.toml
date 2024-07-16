@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "qadence2_core"
-description = "WIP for the new Qadence 2."
+name = "qadence2"
+description = "Qadence 2 - WIP."
 readme = "README.md"
 version = "0.1.0"
 requires-python = ">=3.10,<3.12"
@@ -89,7 +89,7 @@ test = "mkdocs build --clean --strict"
 python = ["39", "310", "311"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["qadence2_core"]
+packages = ["qadence2"]
 
 [tool.coverage.run]
 branch = true
