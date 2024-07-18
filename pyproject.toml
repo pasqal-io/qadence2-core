@@ -26,7 +26,9 @@ classifiers = [
 
 # always specify a version for each package
 # to maintain consistency
-dependencies = ["pyqtorch",
+dependencies = [
+  "pyqtorch",
+  "pulser",
 ]
 
 [tool.hatch.metadata]
