@@ -40,8 +40,8 @@ extras = [
 ]
 [project.urls]
 # Documentation = "https://pqs.pages.pasqal.com/qadence2-core/"
-Issues = "https://github.com/pasqal-io/wip-qadence2-core/issues"
-Source = "https://github.com/pasqal-io/wip-qadence2-core"
+Issues = "https://github.com/pasqal-io/qadence2-core/issues"
+Source = "https://github.com/pasqal-io/qadence2-core"
 
 [tool.hatch.envs.default]
 features = ["extras"]
