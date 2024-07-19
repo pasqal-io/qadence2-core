@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "qadence2"
-description = "Qadence 2 - WIP."
+description = "Qadence 2"
 readme = "README.md"
 version = "0.1.0"
 requires-python = ">=3.10,<3.12"
-license = {text = "Proprietary"}
+license = { text = "Apache 2.0" }
 keywords = ["quantum"]
 authors = [
   { name = "Eduardo Maschio", email = "eduardo.maschio@pasqal.com" },
@@ -40,8 +40,8 @@ extras = [
 ]
 [project.urls]
 # Documentation = "https://pqs.pages.pasqal.com/qadence2-core/"
-Issues = "https://github.com/pasqal-io/wip-qadence2-core/issues"
-Source = "https://github.com/pasqal-io/wip-qadence2-core"
+Issues = "https://github.com/pasqal-io/qadence2-core/issues"
+Source = "https://github.com/pasqal-io/qadence2-core"
 
 [tool.hatch.envs.default]
 features = ["extras"]
@@ -53,8 +53,13 @@ dependencies = [
   "ipykernel",
   "pre-commit",
   "black",
-  "ruff"
+  "isort",
+  "ruff",
+  "pydocstringformatter",
 ]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -n auto --cov-config=pyproject.toml --ignore=./tests/test_examples.py {args}"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -88,7 +93,16 @@ serve = "mkdocs serve --dev-addr localhost:8000"
 test = "mkdocs build --clean --strict"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["39", "310", "311"]
+python = ["310", "311"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.gitignore",
+    "/.pre-commit-config.yml",
+    "/tests",
+    "/docs",
+    "/examples",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["qadence2"]
@@ -126,6 +140,23 @@ max-complexity = 15
 
 [tool.ruff.flake8-quotes]
 docstring-quotes = "double"
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
 
 [tool.mypy]
 python_version = "3.10"
