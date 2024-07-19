@@ -9,4 +9,8 @@ Usage guidelines
 Documentation guidelines
 
 ## Contribute
+<<<<<<< HEAD
 Contribution guidelines
+=======
+Contribution guidelines
+>>>>>>> 7e25dbc (Initial commit.)
