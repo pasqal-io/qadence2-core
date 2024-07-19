@@ -4,7 +4,7 @@ from typing import Optional
 
 
 def main(str_to_add: Optional[str] = None) -> str:
-    msg = "Welcome to {{cookiecutter.project_name}}!"
+    msg = "Welcome to qadence2!"
     if str_to_add is not None:
         msg += str_to_add
     return msg
