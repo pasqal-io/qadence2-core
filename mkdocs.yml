@@ -62,7 +62,7 @@ plugins:
           docstring_section_style: spacy
 
 watch:
-  - qadence2-core
+  - qadence2
 
 extra:
  version:
