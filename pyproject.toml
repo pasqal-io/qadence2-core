@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "qadence2"
 description = "Qadence 2"
 readme = "README.md"
-version = "0.1.2"
+version = "0.1.3"
 requires-python = ">=3.10,<3.12"
 license = { text = "Apache 2.0" }
 keywords = ["quantum"]
@@ -27,6 +27,9 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
+  "qadence2",
+  "qadence2-ir",
+  "qadence2-expressions",
   "pyqtorch",
   "pulser",
 ]
