@@ -1,0 +1,15 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "prHeader": "Renovate Update",
+    "reviewers": [
+        "Roland-djee",
+	"kaosmicadei",
+        "Doomsk",
+    ],
+    "labels": [
+        "renovate",
+    ],
+}
