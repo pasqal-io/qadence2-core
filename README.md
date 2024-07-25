@@ -54,5 +54,8 @@ python -m hatch shell
 
 # run a command within the virtual environment with all the dependencies
 python -m hatch run python my_script.py
+```
 
 ## License
+
+Qadence 2 is a free and open source software package, released under the [Apache License, Version 2.0](docs/getting_started/LICENSE.md).
