@@ -37,4 +37,22 @@ hatch -v shell
 
 ## Contributing
 
+Before making a contribution, please review our [code of conduct](docs/getting_started/CODE_OF_CONDUCT.md).
+
+- **Submitting Issues:** To submit bug reports or feature requests, please use our [issue tracker](https://github.com/pasqal-io/qadence2-core/issues).
+- **Developing in qadence:** To learn more about how to develop within `qadence`, please refer to [contributing guidelines](docs/getting_started/CONTRIBUTING.md).
+
+### Setting up qadence in development mode
+
+We recommend to use the [`hatch`](https://hatch.pypa.io/latest/) environment manager to install `qadence` from source:
+
+```bash
+python -m pip install hatch
+
+# get into a shell with all the dependencies
+python -m hatch shell
+
+# run a command within the virtual environment with all the dependencies
+python -m hatch run python my_script.py
+
 ## License
