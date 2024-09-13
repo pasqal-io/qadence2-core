@@ -14,7 +14,6 @@ print(f"model: {model}\n")
 
 f_params = {"a": torch.tensor(1.0, requires_grad=True)}
 compiled_model = compile_to_backend("pyqtorch", model)
-
 res = compiled_model.sample(values=f_params, shots=10_000)
 print(f"sample result: {res}")
 
