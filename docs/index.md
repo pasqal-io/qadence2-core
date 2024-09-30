@@ -1,4 +1,5 @@
-# "qadence2 core"
+# Qadence 2 Core
+
 ## Installation
 Installation guidelines
 
@@ -9,8 +10,5 @@ Usage guidelines
 Documentation guidelines
 
 ## Contribute
-<<<<<<< HEAD
+
 Contribution guidelines
-=======
-Contribution guidelines
->>>>>>> 7e25dbc (Initial commit.)
