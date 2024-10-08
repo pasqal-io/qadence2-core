@@ -13,7 +13,7 @@ model = compile_to_model(expr)
 print(f"model: {model}\n")
 
 f_params = {"a": torch.tensor(1.0, requires_grad=True)}
-compiled_model = compile_to_backend("pyqtorch", model)
+compiled_model = compile_to_backend(model, "pyqtorch")
 res = compiled_model.sample(values=f_params, shots=10_000)
 print(f"sample result: {res}")
 

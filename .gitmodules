@@ -4,7 +4,7 @@
 [submodule "qadence2-expressions"]
 	path = qadence2-expressions
 	url = https://github.com/pasqal-io/qadence2-expressions.git
-	branch = km/new-expression-model
+	branch = main
 [submodule "qadence2_platforms"]
 	path = qadence2-platforms
 	url = https://github.com/pasqal-io/wip-qadence2-platforms.git

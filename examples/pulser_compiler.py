@@ -12,7 +12,7 @@ model = compile_to_model(expr)
 print(f"model: {model}\n")
 
 f_params = {"a": np.array([1.0])}
-compiled_model = compile_to_backend("fresnel1", model)
+compiled_model = compile_to_backend(model, "fresnel1")
 res = compiled_model.sample(values=f_params, shots=10_000, on="emulator")
 print(f"sample result: {res}")
 
