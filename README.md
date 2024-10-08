@@ -1,19 +1,20 @@
 # Qadence 2
 
-**Notice**: Qadence 2 is currently a *work in progress* and is under active development. Please be aware that the software is in an early stage, and frequent updates, including breaking changes, are to be expected. This means that:
-* Features and functionalities may change without prior notice.
-* The codebase is still evolving, and parts of the software may not function as intended.
-* Documentation and user guides may be incomplete or subject to significant changes.
+!!! note
+    Qadence 2 is currently a *work in progress* and is under active development. Please be aware that the software is in an early stage, and frequent updates, including breaking changes, are to be expected. This means that:
+    * Features and functionalities may change without prior notice.
+    * The codebase is still evolving, and parts of the software may not function as intended.
+    * Documentation and user guides may be incomplete or subject to significant changes.
 
 
 ## Installation
 
-*Note*: it is adviced to set up a python environment before installing the package.
+!!! note
+    It is advised to set up a python environment before installing the package, such as [venv](https://docs.python.org/3/library/venv.html#creating-virtual-environments), [hatch](https://hatch.pypa.io/latest/), [pyenv](https://github.com/pyenv/pyenv), [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) or [poetry](https://python-poetry.org/). (Qadence 2 in development mode uses `hatch`).
 
+To install the current version of Qadence 2, there are a few options:
 
-To install the current version, there are a few options:
-
-### Installation from PYPI
+### 1. Installation from PYPI
 
 On the terminal, type
 
@@ -21,7 +22,7 @@ On the terminal, type
 pip install qadence2
 ```
 
-### Installation from Source
+### 2. Installation from Source
 
 Clone this repository by typing on the terminal
 
@@ -35,6 +36,9 @@ Go to `qadence2-core` folder and install it using [hatch](https://hatch.pypa.io/
 hatch -v shell
 ```
 
+Use hatch environment on your IDE or terminal to use `qadence2` package.
+
+
 ## Contributing
 
 Before making a contribution, please review our [code of conduct](docs/getting_started/CODE_OF_CONDUCT.md).
@@ -42,19 +46,7 @@ Before making a contribution, please review our [code of conduct](docs/getting_s
 - **Submitting Issues:** To submit bug reports or feature requests, please use our [issue tracker](https://github.com/pasqal-io/qadence2-core/issues).
 - **Developing in qadence:** To learn more about how to develop within `qadence`, please refer to [contributing guidelines](docs/getting_started/CONTRIBUTING.md).
 
-### Setting up qadence in development mode
 
-We recommend to use the [`hatch`](https://hatch.pypa.io/latest/) environment manager to install `qadence` from source:
-
-```bash
-python -m pip install hatch
-
-# get into a shell with all the dependencies
-python -m hatch shell
-
-# run a command within the virtual environment with all the dependencies
-python -m hatch run python my_script.py
-```
 
 ## License
 
