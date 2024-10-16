@@ -51,4 +51,3 @@ wf = compiled_model.run(state=pyq.zero_state(2), values=f_params)
 dfdx = torch.autograd.grad(wf, f_params["a"], torch.ones_like(wf))[0]
 print(f"{dfdx = }\n")
 ```
-
