@@ -29,7 +29,7 @@ classifiers = [
 dependencies = [
   "qadence2-ir~=0.1",
   "qadence2-expressions",
-  "pyqtorch~=1.3",
+  "pyqtorch~=1.5",
   "qadence2_platforms",
 ]
 
