@@ -7,3 +7,4 @@
 [submodule "qadence2_platforms"]
 	path = qadence2-platforms
 	url = https://github.com/pasqal-io/wip-qadence2-platforms.git
+	branch = em/fix_expectation

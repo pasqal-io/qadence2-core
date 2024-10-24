@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 from qadence2_expressions.operators import RX, RY, NOT, Expression
 
-from qadence2.qadence2_extensions.legacy.utils import ParadigmStrategy
+from qadence2.extensions.legacy.utils import ParadigmStrategy
 
 
 def hea(strategy: ParadigmStrategy) -> Any:
