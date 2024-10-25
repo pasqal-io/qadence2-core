@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-import time
-
 import matplotlib.pyplot as plt
 import torch
 from qadence2_expressions import RX, Z, parameter
 
 from qadence2.extensions.legacy import QuantumModel
+
 
 if __name__ == "__main__":
 
