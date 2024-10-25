@@ -27,10 +27,10 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
-  "qadence2-ir~=0.1",
   "qadence2-expressions",
-  "pyqtorch~=1.5",
+  "qadence2-ir",
   "qadence2_platforms",
+  "pyqtorch",
 ]
 
 [tool.hatch.metadata]
