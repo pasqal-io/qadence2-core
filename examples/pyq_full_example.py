@@ -6,7 +6,6 @@ from qadence2_expressions import RX, Z, parameter
 
 from qadence2.extensions.legacy import QuantumModel
 
-
 if __name__ == "__main__":
 
     print("Qadence 2 with PyQTorch backend\n\n")
