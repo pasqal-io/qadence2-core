@@ -8,7 +8,7 @@ from qadence2.extensions.legacy import QuantumModel
 
 if __name__ == "__main__":
 
-    print("Qadence 2 with PyQTorch backend\n\n")
+    print("Qadence 2 code prototype for PyQTorch with basic differentiation v1\n\n")
 
     x = parameter("x")
     expr = RX(x)(0)

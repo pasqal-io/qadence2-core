@@ -1,19 +1,20 @@
 from __future__ import annotations
 
-from qadence2_expressions.core.expression import Expression
-from qadence2_expressions import X, Y, RX, parameter, compile_to_model
-from qadence2_ir.types import Model
-from qadence2_platforms.compiler import compile_to_backend
-
-from qadence2.extensions.legacy.model import QuantumModel
-from qadence2.compiler import code_compile
-
+from qadence2_expressions import RX, Y, compile_to_model, parameter
+from qadence2_ir.types import Alloc, Model
 
 # TODO: generate random valid expressions with hypothesis
+
 
 def test_expressions_ir() -> None:
     a = parameter("a")
     expr = Y(0) * RX(a)(0)
-    model = compile_to_model(expr)
-    backend = compile_to_backend(model, "pyqtorch")
-
+    model: Model = compile_to_model(expr)
+    assert len(model.inputs) == 1
+    assert model.inputs.get("a") == Alloc(size=1, trainable=False)
+    assert model.register.num_qubits == 1
+    assert model.register.grid_scale == 1.0
+    assert model.directives == dict()
+    assert len(model.instructions) == 2
+    # TODO: continue the testing
+    # backend = compile_to_backend(model, "pyqtorch")
