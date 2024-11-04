@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import torch
 from qadence2_expressions import parameter, variable
 
-from qadence2.extensions.legacy import QuantumModel, RX, Z
-
+from qadence2.extensions.legacy import RX, QuantumModel, Z
 
 if __name__ == "__main__":
     print("Qadence 2 code prototype for PYQTorch with basic training v1\n\n")

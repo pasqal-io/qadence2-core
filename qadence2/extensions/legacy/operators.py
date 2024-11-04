@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from typing import Any
-
 import qadence2_expressions.operators as ops
 from qadence2_expressions import variable
 from qadence2_expressions.core.expression import Expression
-
 
 # The N = (1/2)(I-Z) operator
 N = ops.Z1

@@ -4,15 +4,13 @@ from dataclasses import dataclass, field
 from typing import Any, Literal, Union
 
 from qadence2_expressions import (
-    compile_to_model,
-    add_qpu_directives,
-    add_settings,
     add_grid_options,
-    reset_ir_options,
+    add_qpu_directives,
+    compile_to_model,
     set_grid_scale,
     set_grid_type,
     set_number_qubits,
-    set_qubits_positions
+    set_qubits_positions,
 )
 from qadence2_platforms import AbstractInterface
 from qadence2_platforms.compiler import compile_to_backend
@@ -24,7 +22,7 @@ def code_compile(
     register: Register | dict | None = None,
     directives: Directives | dict | None = None,
     settings: Settings | dict | None = None,
-    **kwargs: Any
+    **kwargs: Any,
 ) -> AbstractInterface:
     set_config_compiler(register, directives, settings)
     model = compile_to_model(expr)
@@ -89,7 +87,7 @@ def set_config_settings(settings: Settings | dict) -> None:
 def set_config_compiler(
     register: Register | dict | None = None,
     directives: Directives | dict | None = None,
-    settings: Settings | dict | None = None
+    settings: Settings | dict | None = None,
 ) -> None:
     if register:
         set_config_register(register)

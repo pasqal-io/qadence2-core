@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import torch
 from qadence2_expressions import Z, parameter
 
-from qadence2.extensions.legacy import QuantumModel, RX
+from qadence2.extensions.legacy import RX, QuantumModel
 
 if __name__ == "__main__":
 
