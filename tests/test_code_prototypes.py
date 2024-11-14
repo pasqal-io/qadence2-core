@@ -1,22 +1,28 @@
 from __future__ import annotations
 
-from typing import Iterable, Any
+from typing import Any
 
 import numpy as np
 import pytest
 import torch
 from matplotlib import pyplot as plt
 from qadence2_expressions import (
-    NativeDrive, Z, parameter, variable, Expression, function, promote,
-    X, exp
+    Expression,
+    NativeDrive,
+    X,
+    Z,
+    exp,
+    function,
+    parameter,
+    promote,
+    variable,
 )
 
 from qadence2 import Register, code_compile
-from qadence2.extensions.legacy import RX, QuantumModel, kron, RY, chain, CNOT, add, N
+from qadence2.extensions.legacy import CNOT, RX, RY, N, QuantumModel, add, chain, kron
 
 
 def test_pyq_basic_diff_v1() -> None:
-    print("BASIC DIFF V1")
     x = parameter("x")
     expr = RX(0, x)
     model = QuantumModel(expr, backend="pyqtorch")
@@ -216,34 +222,24 @@ def test_fresnel1_basic_rx_v1() -> None:
 
     # atoms close
     spacing = 1.0
-    register = Register(
-        grid_type="square",
-        grid_scale=spacing,
-        qubit_positions=qubit_positions
-    )
+    register = Register(grid_type="square", grid_scale=spacing, qubit_positions=qubit_positions)
     expr = NativeDrive(0.6, 0.5, 0.0, 0.0)()
 
     module = code_compile(expr, "fresnel1", register=register)
-    rotation_close = -1. * module.expectation(observable=Z(0))[0]
+    rotation_close = -1.0 * module.expectation(observable=Z(0))[0]
 
     # atoms far away
     spacing = 80.0
-    register = Register(
-        grid_type="square",
-        grid_scale=spacing,
-        qubit_positions=qubit_positions
-    )
-    expr = NativeDrive(.6, 1.0, 0.0, 0.0)()
+    register = Register(grid_type="square", grid_scale=spacing, qubit_positions=qubit_positions)
+    expr = NativeDrive(0.6, 1.0, 0.0, 0.0)()
 
     module = code_compile(expr, "fresnel1", register=register)
-    rotation_far = -1. * module.expectation(observable=Z(0))[0]
+    rotation_far = -1.0 * module.expectation(observable=Z(0))[0]
 
     # plot
     theta_vals = np.linspace(0, 2 * np.pi, len(rotation_close))
 
-    plt.plot(theta_vals, np.cos(theta_vals), linewidth=3, linestyle="dotted",
-             label="Perfect RX"
-             )
+    plt.plot(theta_vals, np.cos(theta_vals), linewidth=3, linestyle="dotted", label="Perfect RX")
     plt.plot(theta_vals, rotation_close, label="Drive on close atoms")
     plt.plot(theta_vals, rotation_far, label="Drive on far atoms")
     plt.legend()
