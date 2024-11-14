@@ -7,7 +7,7 @@ name = "qadence2"
 description = "Qadence 2"
 readme = "README.md"
 version = "0.1.3"
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.10"
 license = { text = "Apache 2.0" }
 keywords = ["quantum"]
 authors = [
@@ -20,6 +20,7 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
@@ -27,10 +28,10 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
-  "qadence2-ir~=0.1",
   "qadence2-expressions",
-  "pyqtorch~=1.3",
-  "qadence2_platforms @ git+https://github.com/pasqal-io/qadence2-platforms.git@em/pyq_variable_params",
+  "qadence2-ir",
+  "qadence2_platforms",
+  "pyqtorch",
 ]
 
 [tool.hatch.metadata]
