@@ -1,14 +1,8 @@
 from __future__ import annotations
 
-<<<<<<< HEAD
 from qadence2.main import main
 
-expected_msg = "Welcome to qadence2!"
-=======
-from qadence2-core.main import main
-
 expected_msg = "Welcome to qadence2-core!"
->>>>>>> 7e25dbc (Initial commit.)
 
 
 def test_main() -> None:
