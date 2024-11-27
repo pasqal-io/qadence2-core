@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from qadence2.main import main
 
-expected_msg = "Welcome to qadence2-core!"
+expected_msg = "Welcome to qadence2!"
 
 
 def test_main() -> None:
