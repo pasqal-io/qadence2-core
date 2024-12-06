@@ -30,7 +30,7 @@ classifiers = [
 dependencies = [
   "qadence2-expressions",
   "qadence2-ir",
-  "qadence2_platforms",
+  "qadence2_platforms @ git+https://github.com/pasqal-io/qadence2-platforms.git@em/pyq_variable_params",
   "pyqtorch",
 ]
 
@@ -106,6 +106,7 @@ exclude = [
     "/tests",
     "/docs",
     "/examples",
+    "/code_prototypes",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -114,12 +115,6 @@ packages = ["qadence2"]
 [tool.coverage.run]
 branch = true
 parallel = true
-# uncomment to omit any file from the
-# coverage. Regexps can be used
-# to select all files from a folder
-#omit = [
-#  "template_python/to_omit.py",
-#]
 
 [tool.coverage.report]
 exclude_lines = [
