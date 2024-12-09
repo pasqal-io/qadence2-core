@@ -30,7 +30,7 @@ classifiers = [
 dependencies = [
   "qadence2-expressions",
   "qadence2-ir",
-  "qadence2_platforms @ git+https://github.com/pasqal-io/qadence2-platforms.git@em/pyq_variable_params",
+  "qadence2_platforms @ git+https://github.com/pasqal-io/qadence2-platforms.git@main",
   "pyqtorch",
 ]
 

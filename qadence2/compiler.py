@@ -11,6 +11,7 @@ from qadence2_expressions import (
     set_grid_type,
     set_number_qubits,
     set_qubits_positions,
+    reset_ir_options,
 )
 from qadence2_platforms import AbstractInterface
 from qadence2_platforms.compiler import compile_to_backend
@@ -26,6 +27,7 @@ def code_compile(
 ) -> AbstractInterface:
     set_config_compiler(register, directives, settings)
     model = compile_to_model(expr)
+    reset_ir_options()
     return compile_to_backend(model, backend_name)
 
 

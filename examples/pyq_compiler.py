@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import torch
 from qadence2_expressions import RX, RY, add_qpu_directives, compile_to_model, parameter
+from qadence2_platforms import OnEnum
 from qadence2_platforms.compiler import compile_to_backend
 
 if __name__ == "__main__":
@@ -15,7 +16,7 @@ if __name__ == "__main__":
 
     f_params = {"a": torch.tensor(1.0, requires_grad=True)}
     compiled_model = compile_to_backend(model, "pyqtorch")
-    res = compiled_model.sample(values=f_params, shots=10_000)
+    res = compiled_model.sample(values=f_params, shots=10_000, on=OnEnum.EMULATOR)
     print(f"sample result: {res}")
 
     wf = compiled_model.run(values=f_params)

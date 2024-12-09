@@ -183,7 +183,7 @@ def pyq_basic_rx_v1() -> None:
     """
     !!!note
         This code fails. Qadence 2 IR cannot handle arbitrary Hamiltonians (yet).
-        Does not use it.
+        Do not use it.
     """
 
     n_qubits = 2
@@ -231,12 +231,12 @@ def pyq_basic_rx_v1() -> None:
 
 
 def fresnel1_basic_rx_v1() -> None:
+    omega = 0.159
+    max_duration = 2 * np.pi
 
     # atoms close
     spacing = 1
     qubit_positions = [(0, 0), (0, spacing)]
-    omega = 0.159
-    max_duration = 2 * np.pi
     register = Register(grid_type="square", qubit_positions=qubit_positions)
     expr = NativeDrive(max_duration, omega, 0.0, 0.0)()
 
