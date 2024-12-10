@@ -7,11 +7,11 @@ from qadence2_expressions import (
     add_grid_options,
     add_qpu_directives,
     compile_to_model,
+    reset_ir_options,
     set_grid_scale,
     set_grid_type,
     set_number_qubits,
     set_qubits_positions,
-    reset_ir_options,
 )
 from qadence2_platforms import AbstractInterface
 from qadence2_platforms.compiler import compile_to_backend
