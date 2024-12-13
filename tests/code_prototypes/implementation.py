@@ -230,33 +230,37 @@ def pyq_basic_rx_v1() -> None:
     plt.show()
 
 
-def fresnel1_basic_rx_v1() -> None:
-    omega = 0.159
-    max_duration = 2 * np.pi
+def pulser_basic_rx_v1() -> None:
+    for backend_name in ["fresnel1", "analog"]:
+        omega = 0.159
+        max_duration = 2 * np.pi
 
-    # atoms close
-    spacing = 1
-    qubit_positions = [(0, 0), (0, spacing)]
-    register = Register(grid_type="square", qubit_positions=qubit_positions)
-    expr = NativeDrive(max_duration, omega, 0.0, 0.0)()
+        # atoms close
+        spacing = 1
+        qubit_positions = [(0, 0), (0, spacing)]
+        register = Register(grid_type="square", qubit_positions=qubit_positions)
+        expr = NativeDrive(max_duration, omega, 0.0, 0.0)()
 
-    module = code_compile(expr, "fresnel1", register=register)
-    rotation_close = -1.0 * module.expectation(observable=Z(0))[0]
+        module = code_compile(expr, backend_name, register=register)
+        rotation_close = -1.0 * module.expectation(observable=Z(0))[0]
 
-    # atoms far away
-    spacing = 4
-    qubit_positions = [(0, 0), (0, spacing)]
-    register = Register(grid_type="square", qubit_positions=qubit_positions)
-    expr = NativeDrive(max_duration, omega, 0.0, 0.0)()
+        # atoms far away
+        spacing = 4
+        qubit_positions = [(0, 0), (0, spacing)]
+        register = Register(grid_type="square", qubit_positions=qubit_positions)
+        expr = NativeDrive(max_duration, omega, 0.0, 0.0)()
 
-    module = code_compile(expr, "fresnel1", register=register)
-    rotation_far = -1.0 * module.expectation(observable=Z(0))[0]
+        module = code_compile(expr, backend_name, register=register)
+        rotation_far = -1.0 * module.expectation(observable=Z(0))[0]
 
-    # plot
-    theta_vals = np.linspace(0, 2 * np.pi, len(rotation_close))
+        # plot
+        theta_vals = np.linspace(0, 2 * np.pi, len(rotation_close))
 
-    plt.plot(theta_vals, np.cos(theta_vals), linewidth=3, linestyle="dotted", label="Perfect RX")
-    plt.plot(theta_vals, rotation_close, label="Drive on close atoms")
-    plt.plot(theta_vals, rotation_far, label="Drive on far atoms")
-    plt.legend()
-    plt.show()
+        plt.title(f"backend name: {backend_name}")
+        plt.plot(
+            theta_vals, np.cos(theta_vals), linewidth=3, linestyle="dotted", label="Perfect RX"
+        )
+        plt.plot(theta_vals, rotation_close, label="Drive on close atoms")
+        plt.plot(theta_vals, rotation_far, label="Drive on far atoms")
+        plt.legend()
+        plt.show()

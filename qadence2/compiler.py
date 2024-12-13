@@ -33,6 +33,18 @@ def code_compile(
 
 @dataclass
 class Register:
+    """
+    Register class to handle register related data. It can be used instead
+    of pure dictionary to enforce some necessary arguments and validate them.
+
+    Args
+        * grid_type (`Literal["linear", "square", "triangular"]`)
+        * grid_scale (`float`). Default is `1.0`
+        * qubit_positions (`list[tuple[int, int]]`). Default is empty `list`
+        * number_qubits (`int` or `None`). Default is `None`
+        * grid_options (`dict`). Default is empty `dict`
+    """
+
     grid_type: Literal["linear", "square", "triangular"]
     grid_scale: float = field(default=1.0)
     qubit_positions: list = field(default_factory=list)
