@@ -7,10 +7,10 @@
     "reviewers": [
         "RolandMacDoland",
         "Doomsk",
-	"pimvenderbosch"
+        "pimvenderbosch"
     ],
     "labels": [
-        "renovate",
+        "renovate"
     ],
     "ignoreDeps": [
     ]
