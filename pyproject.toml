@@ -7,13 +7,16 @@ name = "qadence2"
 description = "Qadence 2"
 readme = "README.md"
 version = "0.1.3"
-requires-python = ">=3.10"
+requires-python = ">=3.10, <3.13"
 license = { text = "Apache 2.0" }
 keywords = ["quantum"]
 authors = [
   { name = "Eduardo Maschio", email = "eduardo.maschio@pasqal.com" },
   { name = "Kaonan Micadei", email = "kaonan.micadei@pasqal.com" },
-  { name = "Dominik Seitz", email = "dominik.seitz@pasqal.com" }
+  { name = "Dominik Seitz", email = "dominik.seitz@pasqal.com" },
+  { name = "Roland Guichard", email = "roland.guichard@pasqal.com" },
+  { name = "João Moutinho", email = "joao.moutinho@pasqal.com" },
+  { name = "Pim Venderbosch", email = "pim.venderbosch@pasqal.com" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -28,10 +31,9 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
-  "qadence2-expressions",
-  "qadence2-ir",
-  "qadence2_platforms",
-  "pyqtorch",
+  "qadence2-expressions~=0.2.0",
+  "qadence2-ir~=0.2.0",
+  "qadence2_platforms~=0.2.0",
 ]
 
 [tool.hatch.metadata]
@@ -59,6 +61,7 @@ dependencies = [
   "isort",
   "ruff",
   "pydocstringformatter",
+  "pyqtorch~=1.6.0",
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -96,7 +99,7 @@ serve = "mkdocs serve --dev-addr localhost:8000"
 test = "mkdocs build --clean --strict"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["310", "311"]
+python = ["310", "311", "312"]
 
 [tool.hatch.build.targets.sdist]
 exclude = [
