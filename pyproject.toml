@@ -34,7 +34,6 @@ dependencies = [
   "qadence2-expressions~=0.2.0",
   "qadence2-ir~=0.2.0",
   "qadence2_platforms~=0.2.0",
-  "pyqtorch~=1.6.0",
 ]
 
 [tool.hatch.metadata]
@@ -62,6 +61,7 @@ dependencies = [
   "isort",
   "ruff",
   "pydocstringformatter",
+  "pyqtorch~=1.6.0",
 ]
 
 [tool.hatch.envs.default.scripts]
