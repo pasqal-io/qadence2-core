@@ -19,6 +19,4 @@ compiled_model = compile_to_backend(model, "fresnel1")
 # res = compiled_model.sample(values=f_params, shots=10_000, on="emulator")
 res = compiled_model.sample(values=f_params, shots=10_000, on=OnEnum.EMULATOR)
 
-
-
 print(f"sample result: {res}")
