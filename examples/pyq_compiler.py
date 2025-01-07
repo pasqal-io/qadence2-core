@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pyqtorch as pyq
 import torch
-from qadence2_expressions import RX, RY, add_qpu_directives,\
+from qadence2_expressions import RX, RY, add_qpu_directives, \
     compile_to_model, parameter
 from qadence2_platforms.compiler import compile_to_backend
 
