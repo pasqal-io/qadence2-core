@@ -61,7 +61,7 @@ dependencies = [
   "isort",
   "ruff",
   "pydocstringformatter",
-  "pyqtorch~=1.6.0",
+  "pyqtorch~=1.7.0",
 ]
 
 [tool.hatch.envs.default.scripts]
