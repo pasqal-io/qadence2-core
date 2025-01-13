@@ -28,7 +28,7 @@ classifiers = [
 # always specify a version for each package
 # to maintain consistency
 dependencies = [
-  "qadence2-expressions>=0.2",
+  "qadence2-expressions>=0.3",
   "qadence2-ir>=0.2",
   "qadence2_platforms @ git+https://github.com/pasqal-io/qadence2-platforms.git@main",
   "pyqtorch",

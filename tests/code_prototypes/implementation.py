@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 from typing import Any
 
 import numpy as np
@@ -8,8 +9,10 @@ from matplotlib import pyplot as plt
 from qadence2_expressions import (
     Expression,
     NativeDrive,
+    PiecewiseDrive,
     X,
     Z,
+    array_parameter,
     exp,
     function,
     parameter,
@@ -264,3 +267,82 @@ def pulser_basic_rx_v1() -> None:
         plt.plot(theta_vals, rotation_far, label="Drive on far atoms")
         plt.legend()
         plt.show()
+
+
+def pulser_basic_ramp_v2() -> None:
+    # Qadence2 currently uses a factor of 5 in distance unit, so
+    # we use a factor (8/5) to match the previous plot
+    spacing = (8 / 5) * 1.0
+    qubit_positions = [(0, 0), (0, spacing)]
+    register = Register(grid_type="square", qubit_positions=qubit_positions)
+
+    duration = array_parameter("duration", 2)
+    amplitude = array_parameter("amplitude", 3)
+    detuning = array_parameter("detuning", 3)
+
+    expr = PiecewiseDrive(duration, amplitude, detuning, 0.0)()
+
+    module = code_compile(expr, "analog", register=register)
+
+    # This value was manually picked to match the 4000 ns used previously
+    max_duration = 8.0
+
+    values = {"duration": [6.0, 2.0], "amplitude": [0.0, 1.0, 1.0], "detuning": [0.0, 0.0, 0.0]}
+
+    module.draw(values)
+
+    exp_vals = -1.0 * module.expectation(observable=Z(0), values=values)[0]
+
+    time_vals = np.linspace(0, max_duration, len(exp_vals))
+
+    plt.plot(time_vals, exp_vals)
+    plt.show()
+
+
+def pulser_basic_mis_pulse_v1() -> None:
+    import networkx as nx
+
+    n_qubits = 5
+
+    graph = nx.path_graph(n_qubits)
+
+    mis_sol = nx.approximation.maximum_independent_set(graph)
+
+    node_colors = ["red" if node in mis_sol else "blue" for node in graph]
+
+    plt.figure(3, figsize=(2, 2), dpi=150)
+    nx.draw(graph, node_color=node_colors, with_labels=True)
+
+    n_qubits = 5
+
+    qubit_positions = [(i, 0) for i in range(n_qubits)]
+
+    register = Register(grid_type="square", qubit_positions=qubit_positions)
+
+    total_duration = 7.99  # 8.0 was erroring out as going above the limit
+    rise_duration = 0.5
+    fall_duration = 1.0
+    max_amplitude = 1.0
+    initial_detuning = -0.3
+    final_detuning = 0.3
+    sweep_duration = total_duration - rise_duration - fall_duration
+
+    duration = array_parameter("duration", 3)
+    amplitude = array_parameter("amplitude", 4)
+    detuning = array_parameter("detuning", 4)
+
+    pd = PiecewiseDrive(duration, amplitude, detuning, 0.0)
+
+    module = code_compile(pd(), "analog", register=register)
+
+    values = {
+        "duration": [rise_duration, sweep_duration, fall_duration],
+        "amplitude": [0.0, 1.0, 1.0, 0.0],
+        "detuning": [-0.3, -0.3, 0.3, 0.3],
+    }
+
+    module.draw(values)
+
+    res: Counter = module.sample(shots=1000, values=values)
+
+    assert np.allclose(res.get("10101"), 980, atol=20)
