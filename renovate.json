@@ -5,11 +5,13 @@
     ],
     "prHeader": "Renovate Update",
     "reviewers": [
-        "Roland-djee",
-	"kaosmicadei",
+        "RolandMacDoland",
         "Doomsk",
+        "pimvenderbosch"
     ],
     "labels": [
-        "renovate",
+        "renovate"
     ],
+    "ignoreDeps": [
+    ]
 }
