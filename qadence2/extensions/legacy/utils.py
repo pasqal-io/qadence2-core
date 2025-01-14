@@ -15,11 +15,15 @@ class ParadigmStrategy(Enum):
 
 
 def add(*expr: Generator | list[Expression]) -> Expression:
-    return Expression.add(*tuple(expr))
+    if len(expr) > 0 and isinstance(expr[0], Generator):
+        return Expression.add(*tuple(*expr))
+    return Expression.add(*expr)
 
 
 def mul(*expr: Generator | list[Expression]) -> Expression:
-    return Expression.mul(*tuple(expr))
+    if len(expr) > 0 and isinstance(expr[0], Generator):
+        return Expression.mul(*tuple(*expr))
+    return Expression.mul(*expr)
 
 
 def chain(*expr: Generator | list[Expression]) -> Expression:
@@ -27,8 +31,12 @@ def chain(*expr: Generator | list[Expression]) -> Expression:
 
 
 def kron(*expr: Generator | list[Expression]) -> Expression:
-    return Expression.kron(*tuple(expr))
+    if len(expr) > 0 and isinstance(expr[0], Generator):
+        return Expression.kron(*tuple(*expr))
+    return Expression.kron(*expr)
 
 
 def pow(*expr: Generator | list[Expression]) -> Expression:
-    return Expression.pow(*tuple(expr))
+    if len(expr) > 0 and isinstance(expr[0], Generator):
+        return Expression.pow(*tuple(*expr))
+    return Expression.pow(*expr)
