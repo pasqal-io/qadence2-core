@@ -42,13 +42,12 @@ from qadence2.extensions.legacy import chain, RX, CNOT
 rx = RX(0, 0.5)
 cnot = CNOT(0, 1)
 
-block = chain([rx, cnot])
+block = chain(rx, cnot)
 ```
 
 ## Composite blocks
 
 Qadence
-<!-- ```python exec="on" source="material-block" result="json" session="getting_started" -->
 ```python exec="on" source="material-block" html="1" session="getting_started"
 from qadence import X, Y, chain, kron
 
@@ -56,17 +55,16 @@ chain_0 = chain(X(0), Y(0))
 chain_1 = chain(X(1), Y(1))
 
 kron_block = kron(chain_0, chain_1)
-# print(kron_block) # markdown-exec: hide
 ```
 
 Qadence2
 ```python exec="on" source="material-block" html="1" session="getting_started"
 from qadence2.extensions.legacy import X, Y, chain, kron
 
-chain_0 = chain([X(0), Y(0)])
-chain_1 = chain([X(1), Y(1)])
+chain_0 = chain(X(0), Y(0))
+chain_1 = chain(X(1), Y(1))
 
-kron_block = kron([chain_0, chain_1])
+kron_block = kron(chain_0, chain_1)
 ```
 
 
@@ -87,7 +85,7 @@ Qadence2
 from qadence2.extensions.legacy import X, Y, add
 
 def xy_int(i: int, j: int):
-    return (1/2) * (X(i)*X(j) + Y(i)*Y(j))
+    return (1/2) * (X(i)@X(j) + Y(i)@Y(j))
 
 n_qubits = 3
 
