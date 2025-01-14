@@ -1,5 +1,5 @@
 
-### Legacy Consideration
+### Transition Consideration
 This document is for Qadence users to use Qadence2 funcationalities with Qadence format.
 The examples in Qadence Contents and Tutorials will be presented with qadence2.legacy.
 For Qadence2 code manual, please refer to ~~.
@@ -177,4 +177,3 @@ Qadence2
 ```python exec="on" source="material-block" html="1" session="getting_started"
 
 ```
-

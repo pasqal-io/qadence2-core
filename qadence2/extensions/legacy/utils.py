@@ -14,21 +14,21 @@ class ParadigmStrategy(Enum):
     RYDBERG = auto()
 
 
-def add(expr: Generator | list[Expression]) -> Expression:
+def add(*expr: Generator | list[Expression]) -> Expression:
     return Expression.add(*tuple(expr))
 
 
-def mul(expr: Generator | list[Expression]) -> Expression:
+def mul(*expr: Generator | list[Expression]) -> Expression:
     return Expression.mul(*tuple(expr))
 
 
-def chain(expr: Generator | list[Expression]) -> Expression:
-    return mul(expr)
+def chain(*expr: Generator | list[Expression]) -> Expression:
+    return mul(*expr)
 
 
-def kron(expr: Generator | list[Expression]) -> Expression:
+def kron(*expr: Generator | list[Expression]) -> Expression:
     return Expression.kron(*tuple(expr))
 
 
-def pow(expr: Generator | list[Expression]) -> Expression:
+def pow(*expr: Generator | list[Expression]) -> Expression:
     return Expression.pow(*tuple(expr))
