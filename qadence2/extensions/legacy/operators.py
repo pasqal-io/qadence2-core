@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import qadence2_expressions.operators as ops
-from qadence2_expressions.core.constructors import promote, unitary_hermitian_operator, parametric_operator
-from qadence2_expressions.operators import _join_rotation
 from qadence2_expressions import variable
+from qadence2_expressions.core.constructors import (
+    parametric_operator,
+    promote,
+    unitary_hermitian_operator,
+)
 from qadence2_expressions.core.expression import Expression
-
-from .utils import PI
+from qadence2_expressions.operators import _join_rotation
 
 # The N = (1/2)(I-Z) operator
 N = ops.Z1
@@ -40,9 +42,12 @@ def T(target: int) -> Expression:
 
 
 def PHASE(target: int, parameters: Expression | str | float) -> Expression:
-    return parametric_operator("PHASE", promote(_get_variable(parameters)), join=_join_rotation)(target=(target,))
+    return parametric_operator("PHASE", promote(_get_variable(parameters)), join=_join_rotation)(
+        target=(target,)
+    )
 
 
 def CPHASE(control: int, target: int, parameters: Expression | str | float) -> Expression:
-    return parametric_operator("CPHASE", promote(_get_variable(parameters)), join=_join_rotation)(target=(target,), control=(control,))
-
+    return parametric_operator("CPHASE", promote(_get_variable(parameters)), join=_join_rotation)(
+        target=(target,), control=(control,)
+    )

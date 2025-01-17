@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from qadence2_expressions.operators import CZ, X, Y, Z, H
+from qadence2_expressions.operators import CZ, H, X, Y, Z
 
 from .model import QuantumModel
-from .operators import CNOT, RX, RY, RZ, N, T, PHASE, CPHASE
+from .operators import CNOT, CPHASE, PHASE, RX, RY, RZ, N, T
 from .utils import PI, add, chain, kron, mul, pow
 
 __all__ = [
