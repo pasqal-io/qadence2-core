@@ -3,7 +3,10 @@ from __future__ import annotations
 from enum import Enum, auto
 from typing import Generator
 
+import torch
 from qadence2_expressions.core.expression import Expression
+
+PI = torch.pi
 
 
 class ParadigmStrategy(Enum):
