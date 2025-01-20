@@ -139,29 +139,45 @@ obs = add(Z(i) for i in range(n_qubits))
 ex = compiled_model.expectation(observable=obs)
 ```
 
-## Next session
+## Fixed Parameters
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
+import torch
+from qadence import RX, run, PI
 
+wf = run(RX(0, torch.tensor(PI)))
+
+wf = run(RX(0, PI))
 ```
 
 Qadence2
+We only allow Python native literals as input in Qadence 2. This does not include `torch.Tensor` and `numpy.array`. It will run without error after qadence2-platform v0.2.4.
 ```python exec="on" source="material-block" html="1" session="getting_started"
+from qadence2.extensions.legacy import RX, PI
+from qadence2_expressions import compile_to_model
+from qadence2_platforms.compiler import compile_to_backend
 
+block_1 = RX(0, 3.14159)
+model_1 = compile_to_model(block_1)
+compiled_model_1 = compile_to_backend(model_1, "pyqtorch")
+wf_1 = compiled_model_1.run()
+
+block_2 = RX(0, PI)
+model_2 = compile_to_model(block_2)
+compiled_model_2 = compile_to_backend(model_2, "pyqtorch")
+wf_2 = compiled_model_2.run()
 ```
 
-## Next session
+## Things that are not supported in qadence 2
 
-Qadence
-```python exec="on" source="material-block" html="1" session="getting_started"
-
-```
-
-Qadence2
-```python exec="on" source="material-block" html="1" session="getting_started"
-
-```
+- Circuit drawing
+- Circuit tree
+- HamEvo
+- Variational parameter random initialization(automatically)
+- Feature parameter
+- run/sample/expectation without compilation to model & backend
+- torch.Tensor & numpy.array
 
 ## Next session
 

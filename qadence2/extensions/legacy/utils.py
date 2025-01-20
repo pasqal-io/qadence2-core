@@ -1,12 +1,12 @@
 from __future__ import annotations
 
+import math
 from enum import Enum, auto
 from typing import Generator
 
-import torch
 from qadence2_expressions.core.expression import Expression
 
-PI = torch.pi
+PI = math.pi
 
 
 class ParadigmStrategy(Enum):
