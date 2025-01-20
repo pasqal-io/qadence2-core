@@ -96,16 +96,47 @@ def qft(qs: tuple):
     return chain(qft_layer(qs, l) for l in range(len(qs)))
 ```
 
-## Next session
+## Block Execution
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
+from qadence import kron, add, H, Z, run, sample, expectation
 
+n_qubits = 2
+
+# Prepares a uniform state
+h_block = kron(H(i) for i in range(n_qubits))
+
+wf = run(h_block)
+
+xs = sample(h_block, n_shots=1000)
+
+obs = add(Z(i) for i in range(n_qubits))
+ex = expectation(h_block, obs)
 ```
 
 Qadence2
 ```python exec="on" source="material-block" html="1" session="getting_started"
+from qadence2.extensions.legacy import kron, add, H, Z
+from qadence2_expressions import compile_to_model
+from qadence2_platforms import OnEnum
+from qadence2_platforms.compiler import compile_to_backend
+import torch
 
+n_qubits = 2
+
+# Prepares a uniform state
+h_block = kron(H(i) for i in range(n_qubits))
+
+model = compile_to_model(h_block)
+compiled_model = compile_to_backend(model, "pyqtorch")
+
+wf = compiled_model.run()
+
+res = compiled_model.sample(shots=1_000, on=OnEnum.EMULATOR)
+
+obs = add(Z(i) for i in range(n_qubits))
+ex = compiled_model.expectation(observable=obs)
 ```
 
 ## Next session
