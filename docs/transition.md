@@ -11,8 +11,6 @@ For Qadence2 code details, please refer to https://github.com/pasqal-io/qadence2
 - quantum registers (few options are not includes (ex. circle, honeycomb))
 
 ### Features need to implement
-- QNN
-- importing graph as input of registers
 - <span style="color: red;">state initialization</span>
 - random_state, is_normalized, product_state, product_block
 - uniform_state, zero_state, one_state, rand_product_state, ghz_state
@@ -24,11 +22,13 @@ For Qadence2 code details, please refer to https://github.com/pasqal-io/qadence2
 - <span style="color: red;">hardware efficient ansatz (hea)</span>
 - identity_initialized_ansatz
 - <span style="color: red;">wave function overlap</span>
+- importing graph as input of registers
 - AnalogRot, AnalogRX, AnalogRY, AnalogRZ, AnalogInteraction
 - RydbergDevice
 - rydberg_hea, rydberg_hea_layer
 - AddressingPattern
 - daqc_transform
+- QNN
 - Trainer
 - Projector
 - CUDA
