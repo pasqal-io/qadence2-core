@@ -1,5 +1,5 @@
 
-# Transition Consideration
+# Transition Guide
 This document is for Qadence users to use Qadence2 funcationalities with Qadence format.
 For Qadence2 code details, please refer to https://github.com/pasqal-io/qadence2-core.
 
