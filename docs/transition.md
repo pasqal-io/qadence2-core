@@ -1,55 +1,11 @@
 
 # Transition Consideration
 This document is for Qadence users to use Qadence2 funcationalities with Qadence format.
-The examples in Qadence Contents and Tutorials will be presented with qadence2.expressions.legacy package. The provided Operators and functions are states as below
 For Qadence2 code details, please refer to https://github.com/pasqal-io/qadence2-core.
 
-### Features provided in both Qadence1 & Qadence2
-
-- quantum gates & custom gates
-- circuit block composition
-- quantum registers (few options are not includes (ex. circle, honeycomb))
-
-### Features need to implement
-- <span style="color: red;">state initialization</span>
-- random_state, is_normalized, product_state, product_block
-- uniform_state, zero_state, one_state, rand_product_state, ghz_state
-- block initialization
-- uniform_block, one_block, product_block, rand_product_block, ghz_block
-- <span style="color: red;">hamiltonian factory</span>
-- <span style="color: red;">time dependent generators</span>
-- feature map
-- <span style="color: red;">hardware efficient ansatz (hea)</span>
-- identity_initialized_ansatz
-- <span style="color: red;">wave function overlap</span>
-- importing graph as input of registers
-- AnalogRot, AnalogRX, AnalogRY, AnalogRZ, AnalogInteraction
-- RydbergDevice
-- rydberg_hea, rydberg_hea_layer
-- AddressingPattern
-- daqc_transform
-- QNN
-- Trainer
-- Projector
-- CUDA
-- submission to pascal cloud
-- Measurements, classical shadow
-- NoiseHandler, NoiseProtocol
-- set_noise
-- error mitigation
-
-### Features only provided in Qadence1
-
-- visualizing quantum circuits
-- tensor representation
-- arbitary hamiltonian evolution
-- `Feature Parameter`
-- density matrix
-- equivalent_state
-
-
-
 ## Operators
+
+Qadence operators can be used as the identical way (including the order of target and control) in Qadence 2.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -68,6 +24,8 @@ cnot = CNOT(0, 1)
 ```
 
 ## Block System
+
+Building quantum expressions with `chain` and `kron` is also identical.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -90,6 +48,8 @@ kron_block = kron(chain_0, chain_1)
 ```
 
 ## Compose Functions
+
+Custom gates can also be applied in the same way, and due to internal changes in Torch, it is recommended to use `*` instead of `@`.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -141,92 +101,11 @@ def qft(qs: tuple):
     return chain(qft_layer(qs, l) for l in range(len(qs)))
 ```
 
-## Block Execution
-
-Qadence
-```python exec="on" source="material-block" html="1" session="getting_started"
-from qadence import kron, add, H, Z, run, sample, expectation
-
-n_qubits = 2
-
-# Prepares a uniform state
-h_block = kron(H(i) for i in range(n_qubits))
-
-wf = run(h_block)
-
-xs = sample(h_block, n_shots=1000)
-
-obs = add(Z(i) for i in range(n_qubits))
-ex = expectation(h_block, obs)
-```
-
-Qadence2
-```python exec="on" source="material-block" html="1" session="getting_started"
-from qadence2.extensions.legacy import kron, add, H, Z
-from qadence2_expressions import compile_to_model
-from qadence2_platforms import OnEnum
-from qadence2_platforms.compiler import compile_to_backend
-import torch
-
-n_qubits = 2
-
-# Prepares a uniform state
-h_block = kron(H(i) for i in range(n_qubits))
-
-model = compile_to_model(h_block)
-compiled_model = compile_to_backend(model, "pyqtorch")
-
-wf = compiled_model.run()
-
-res = compiled_model.sample(shots=1_000, on=OnEnum.EMULATOR)
-
-obs = add(Z(i) for i in range(n_qubits))
-ex = compiled_model.expectation(observable=obs)
-```
-
-## Fixed Parameters
-
-Qadence
-```python exec="on" source="material-block" html="1" session="getting_started"
-import torch
-from qadence import RX, run, PI
-
-wf = run(RX(0, torch.tensor(PI)))
-
-wf = run(RX(0, PI))
-```
-
-Qadence2
-We only allow Python native literals as input in Qadence 2. This does not include `torch.Tensor` and `numpy.array`. It will run without error after qadence2-platform v0.2.4.
-```python exec="on" source="material-block" html="1" session="getting_started"
-from qadence2.extensions.legacy import RX, PI
-from qadence2_expressions import compile_to_model
-from qadence2_platforms.compiler import compile_to_backend
-
-block_1 = RX(0, 3.14159)
-model_1 = compile_to_model(block_1)
-compiled_model_1 = compile_to_backend(model_1, "pyqtorch")
-wf_1 = compiled_model_1.run()
-
-block_2 = RX(0, PI)
-model_2 = compile_to_model(block_2)
-compiled_model_2 = compile_to_backend(model_2, "pyqtorch")
-wf_2 = compiled_model_2.run()
-```
-
-## Things that are not supported in qadence 2
-
-- Circuit drawing
-- Circuit tree
-- HamEvo
-- Variational parameter random initialization(automatically)
-- Feature parameter
-- run/sample/expectation without compilation to model & backend
-- torch.Tensor & numpy.array
 
 ## Quantum Models
 
-Qadence2 uses `compile_to_model` and `compile_to_backend` to make the expression ready to execute with `run`, `sample`, and `expectation`.
+Qadence2 uses `Expression` and `IR` to represent the details of the quantum circuits and algorithms. They first need to be compiled in order to execute them with the backends. We use `compiled_to_model` and `compiled_to_backend` to compile them in the proper format. Only after this procedure is it ready to execute `run`, `sample`, and `expectation`.
+
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
 import torch
@@ -279,8 +158,8 @@ ex = compiled_model.expectation(values, observable=observable)
 ```
 
 ## Quantum Registers
-Qadence2 can represent the relationships between logical qubits using `grid_type`, `grid_scale`, and `qubit_position`. The `connectivity` in `qadence2_ir` is for accurately representing the connectivity between qubits.
 
+Qadence2 can represent the relationships between logical qubits using `grid_type`, `grid_scale`, and `qubit_position`. The `connectivity` in `qadence2_ir` is for accurately representing the connectivity between qubits.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -305,16 +184,4 @@ set_qubits_positions([(-2, 1), (0, 0), (3, 1)])
 set_grid_scale(0.4)
 
 compile_to_model(expr)
-```
-
-## Next session
-
-Qadence
-```python exec="on" source="material-block" html="1" session="getting_started"
-
-```
-
-Qadence2
-```python exec="on" source="material-block" html="1" session="getting_started"
-
 ```
