@@ -5,7 +5,7 @@ For Qadence2 code details, please refer to https://github.com/pasqal-io/qadence2
 
 ## Operators
 
-Qadence operators can be used as the identical way (including the order of target and control) in Qadence 2.
+Qadence operators can be used in the same way (including the order of target and control) in Qadence 2.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -49,7 +49,7 @@ kron_block = kron(chain_0, chain_1)
 
 ## Compose Functions
 
-Custom gates can also be applied in the same way, and due to internal changes in Torch, it is recommended to use `*` instead of `@`.
+Custom gates can also be applied in the same way, and with the definition change, Qadence2 now use `*` instead of `@`.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -76,6 +76,8 @@ xy_ham = add(xy_int(i, i+1) for i in range(n_qubits-1))
 ```
 
 ## Quantum Fourier Transform Example
+
+The code initializes a quantum circuit with `CPHASE` gates and applies `qft_layer` to transform the input quantum state into its frequency domain representation.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -104,7 +106,10 @@ def qft(qs: tuple):
 
 ## Quantum Models
 
-Qadence2 uses `Expression` and `IR` to represent the details of the quantum circuits and algorithms. They first need to be compiled in order to execute them with the backends. We use `compiled_to_model` and `compiled_to_backend` to compile them in the proper format. Only after this procedure is it ready to execute `run`, `sample`, and `expectation`.
+Qadence2 uses `Expression` and `IR` to represent the details of the quantum circuits and algorithms and `Platform` to match the executing backend, whereas Qadence is not separated.
+As a result, Qadence can call `run,` `sample,` and `expectation` with the circuit representation itself.
+However, Qadence2 requires it first to be compiled to execute them with the backends.
+Qadence2 uses `compile_to_model` and `compile_to_backend` to compile them into `model` and `compiled_model,` respectively. After this procedure, it is only ready to execute `run,` `sample,` and `expectation.`
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
@@ -159,7 +164,7 @@ ex = compiled_model.expectation(values, observable=observable)
 
 ## Quantum Registers
 
-Qadence2 can represent the relationships between logical qubits using `grid_type`, `grid_scale`, and `qubit_position`. The `connectivity` in `qadence2_ir` is for accurately representing the connectivity between qubits.
+Qadence2 can represent the relationships between qubits using `grid_type`, `grid_scale`, and `qubit_position`. The `connectivity` in `qadence2_ir` is for accurately representing the connectivity between qubits.
 
 Qadence
 ```python exec="on" source="material-block" html="1" session="getting_started"
